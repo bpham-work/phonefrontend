@@ -7,6 +7,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { AppState } from './app.service';
+import { AuthenticationService } from './services/authentication.service';
 
 /**
  * App Component
@@ -30,11 +31,13 @@ export class AppComponent implements OnInit {
   public url = 'https://twitter.com/AngularClass';
 
   constructor(
-    public appState: AppState
+    public appState: AppState,
+    private auth: AuthenticationService
   ) {}
 
   public ngOnInit() {
     // console.log('Initial App State', this.appState.state);
+    this.auth.authenticate({phoneNumber: '1111111111', password: '1'});
   }
 
 }

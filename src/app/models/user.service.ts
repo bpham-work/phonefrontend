@@ -6,8 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {DataSource} from "@angular/cdk";
 
 @Injectable()
-
-  export class UserService{
+export class UserService{
 
   public getUser(id: number){
     let userToReturn = new UserModel("testUserName", "testUserPassword",
@@ -15,7 +14,7 @@ import {DataSource} from "@angular/cdk";
     return userToReturn;
   }
 
-  public  addNewContact(newContactName: string, newContactNumber: number){
+  public addNewContact(newContactName: string, newContactNumber: number){
     let newContact = new ContactModel(newContactName, newContactNumber);
     //call api to add contact
   }

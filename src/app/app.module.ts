@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdTable, MdTableModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdDialogModule, MdTableModule} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import {
   NgModule,
@@ -36,6 +36,11 @@ import {HelloworldComponent} from "./helloworld/helloworld.component";
 import {CdkTableModule} from "@angular/cdk";
 import {PhonePipe} from "./pipes/phonepipe.component"
 import {AddContactDialog} from "./addcontactdialog/addcontactdialog.component";
+import { StoreModule } from '@ngrx/store';
+import { rootReducers } from './app.reducers';
+import { HttpClient } from './services/httpclient';
+import { UrlBuilder } from './services/urlbuilder';
+import { AuthenticationService } from './services/authentication.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -78,15 +83,18 @@ type StoreType = {
     CdkTableModule,
     MdButtonModule,
     MdDialogModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    StoreModule.forRoot(rootReducers)
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
    */
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    HttpClient,
+    UrlBuilder,
+    AuthenticationService
   ],
 
   entryComponents: [
