@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
   MdButtonModule, MdCheckboxModule, MdDialogModule,
-  MdTableModule
+  MdTableModule, MdInputModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import {
@@ -43,6 +43,8 @@ import { UrlBuilder } from './services/urlbuilder';
 import { HttpClient } from './services/httpclient';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './models/user.service';
+import { StoreModule } from '@ngrx/store';
+import { rootReducers } from './app.reducers';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -81,12 +83,13 @@ type StoreType = {
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     MdButtonModule,
     MdCheckboxModule,
+    MdInputModule,
     MdTableModule,
     CdkTableModule,
     MdButtonModule,
     MdDialogModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    StoreModule.forRoot(rootReducers)
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
