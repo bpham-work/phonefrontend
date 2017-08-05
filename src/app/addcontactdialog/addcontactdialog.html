@@ -1,0 +1,18 @@
+<h1 md-dialog-title>New Contact</h1>
+<div>
+    <md-input-container type="text">
+      <input mdInput placeholder="Full Name" [(ngModel)]="newContact.name">
+    </md-input-container>
+  <br>
+    <md-input-container type="tel">
+      <input mdInput placeholder="Phone Number" [(ngModel)]="newContact.phoneNumber">
+    </md-input-container>
+  <br>
+  <div md-dialog-actions>
+    <button md-button md-dialog-close="Save"(click)="saveContact()">Save</button>
+    <button md-button md-dialog-close="Cancel">Cancel</button>
+  </div>
+  <div>
+    {{newContact.name}}
+  </div>
+</div>
