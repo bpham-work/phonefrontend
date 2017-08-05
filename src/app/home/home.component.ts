@@ -2,10 +2,14 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-
-import { AppState } from '../app.service';
-import { Title } from './title';
-import { XLargeDirective } from './x-large';
+import {UserService} from "../models/user.service";
+import {UserModel} from "../models/user.model"
+import {DataSource} from "@angular/cdk";
+import {Observable} from 'rxjs/Observable';
+import {ContactModel} from "../models/contact.model";
+import {PhonePipe} from "../pipes/phonepipe.component";
+import {AddContactDialog} from "../addcontactdialog/addcontactdialog.component";
+import {MdDialog} from "@angular/material"
 
 @Component({
   /**
@@ -18,7 +22,8 @@ import { XLargeDirective } from './x-large';
    * We need to tell Angular's Dependency Injection which providers are in our app.
    */
   providers: [
-    Title
+    UserService,
+    PhonePipe
   ],
   /**
    * Our list of styles in our component. We may add more to compose many styles together.
@@ -30,28 +35,31 @@ import { XLargeDirective } from './x-large';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  /**
-   * Set our default values
-   */
-  public localState = { value: '' };
-  /**
-   * TypeScript public modifiers
-   */
+
+  public currentUser: UserModel;
+  public contactsDataSource: DataSource<any>;
+  displayedColumns = ['contactName', 'contactPhoneNumber'];
+
   constructor(
-    public appState: AppState,
-    public title: Title
+    public userService: UserService,
+    public dialog: MdDialog
+
   ) {}
 
-  public ngOnInit() {
-    console.log('hello `Home` component');
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
+  openDialog() {
+    this.dialog.open(AddContactDialog,{
+      height: '400px',
+      width: '600px'
+    });
   }
 
-  public submitState(value: string) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
+  public ngOnInit() {
+    let userId = 1;
+    this.currentUser = this.userService.getUser(userId);
+    this.contactsDataSource = this.userService.getContactsAsDataSource(this.currentUser);
   }
 }
+
+
+
+

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdTable, MdTableModule} from '@angular/material';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import {
   NgModule,
   ApplicationRef
@@ -28,9 +30,12 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
-
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import {HelloworldComponent} from "./helloworld/helloworld.component";
+import {CdkTableModule} from "@angular/cdk";
+import {PhonePipe} from "./pipes/phonepipe.component"
+import {AddContactDialog} from "./addcontactdialog/addcontactdialog.component";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -54,7 +59,10 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+    HelloworldComponent,
+    PhonePipe,
+    AddContactDialog
   ],
   /**
    * Import Angular's modules.
@@ -63,7 +71,15 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    MdButtonModule,
+    MdCheckboxModule,
+    MdTableModule,
+    CdkTableModule,
+    MdButtonModule,
+    MdDialogModule,
+    BrowserAnimationsModule
+
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -71,6 +87,10 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS
+  ],
+
+  entryComponents: [
+    AddContactDialog
   ]
 })
 export class AppModule {
