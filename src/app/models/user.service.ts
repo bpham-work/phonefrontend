@@ -15,8 +15,7 @@ import {DataSource} from "@angular/cdk";
     return userToReturn;
   }
 
-  public  addNewContact(newContactName: string, newContactNumber: number){
-    let newContact = new ContactModel(newContactName, newContactNumber);
+  public  addNewContact(newContact: ContactModel){
     //call api to add contact
   }
 

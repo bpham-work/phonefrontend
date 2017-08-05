@@ -22,7 +22,6 @@ import {MdDialog} from "@angular/material"
    * We need to tell Angular's Dependency Injection which providers are in our app.
    */
   providers: [
-    UserService,
     PhonePipe
   ],
   /**
@@ -47,10 +46,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   openDialog() {
-    this.dialog.open(AddContactDialog,{
-      height: '400px',
-      width: '600px'
-    });
+    this.dialog.open(AddContactDialog);
   }
 
   public ngOnInit() {

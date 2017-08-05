@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdTable, MdTableModule} from '@angular/material';
+import {
+  MdButtonModule, MdCheckboxModule, MdDialog, MdDialogModule, MdInputModule, MdTable,
+  MdTableModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 import {
   NgModule,
@@ -36,6 +39,7 @@ import {HelloworldComponent} from "./helloworld/helloworld.component";
 import {CdkTableModule} from "@angular/cdk";
 import {PhonePipe} from "./pipes/phonepipe.component"
 import {AddContactDialog} from "./addcontactdialog/addcontactdialog.component";
+import {UserService} from "./models/user.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -78,7 +82,8 @@ type StoreType = {
     CdkTableModule,
     MdButtonModule,
     MdDialogModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MdInputModule
 
   ],
   /**
@@ -86,7 +91,8 @@ type StoreType = {
    */
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    UserService
   ],
 
   entryComponents: [
